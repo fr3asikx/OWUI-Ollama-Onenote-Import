@@ -1,6 +1,6 @@
 # OWUI-Ollama-Onenote-Import
 
-Dieses Projekt stellt ein einfaches Python-Werkzeug bereit, das Inhalte aus Microsoft OneNote über die Microsoft Graph API exportiert, als bereinigte Textdateien speichert und in einen lokalen Vektorstore (ChromaDB) einfügt. Die erzeugten Vektoren können anschließend in OpenWebUI genutzt werden, um einen Ollama-gestützten Wissenschatbot mit aktuellen OneNote-Inhalten zu betreiben.
+Dieses Repository stellt folgendes bereit: Das Inhalte aus Microsoft OneNote über die Microsoft Graph API exportiert, als bereinigte Textdateien speichert und in einen lokalen Vektorstore (ChromaDB) einfügt. Die erzeugten Vektoren können anschließend in OpenWebUI genutzt werden, um einen Ollama-gestützten Wissenschatbot mit aktuellen OneNote-Inhalten zu betreiben.
 
 ## Funktionsübersicht
 
