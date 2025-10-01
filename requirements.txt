@@ -1,0 +1,5 @@
+msal>=1.28.0
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+chromadb>=0.4.22
+sentence-transformers>=2.6.1
