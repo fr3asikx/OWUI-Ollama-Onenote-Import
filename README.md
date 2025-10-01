@@ -14,7 +14,7 @@ Dieses Projekt stellt ein einfaches Python-Werkzeug bereit, das Inhalte aus Micr
 ## Voraussetzungen
 
 1. **Python 3.10 oder neuer**
-2. Ein **Azure AD App-Registrierung** mit aktivierten Microsoft Graph Berechtigungen (`Notes.Read`).
+2. Eine **Azure AD App-Registrierung** mit aktivierten Microsoft Graph Berechtigungen (`Notes.Read`).
 3. Zugriff auf ein **OneNote-Konto**, dessen Inhalte exportiert werden sollen.
 4. (Optional) Eine vorhandene **OpenWebUI + Ollama** Installation für die spätere Nutzung der Vektoren.
 
@@ -30,8 +30,33 @@ pip install -r requirements.txt
 
 1. Melde dich im [Azure Portal](https://portal.azure.com/) an.
 2. Erstelle unter „App-Registrierungen“ eine neue **öffentliche Client-App**.
-3. Notiere dir die **Anwendungs-(Client-)ID**.
+3. Notiere dir die **Anwendungs-(Client-)ID** und den **Verzeichnis-(Tenant-)Bezeichner**.
 4. Füge unter „API-Berechtigungen“ die **Microsoft Graph** Berechtigung `Notes.Read` (delegiert) hinzu und bestätige ggf. den Admin-Consent.
+5. Gewährleiste, dass die App als **öffentlich (mobile & Desktop)** konfiguriert ist, damit der Gerätecode-Flow genutzt werden kann.
+
+> ℹ️ Für produktive Szenarien kannst du zusätzliche delegierte Berechtigungen vergeben, z. B. `Notes.Read.All`, sofern dein Tenant dies benötigt. Die Authentifizierung erfolgt immer im Kontext des angemeldeten Benutzers.
+
+## Client- und Tenant-ID verwalten
+
+Die Skripte erwarten die Client- und Tenant-ID entweder als CLI-Parameter (siehe unten) oder über Umgebungsvariablen. Für eine dauerhafte Konfiguration kannst du sie z. B. in deiner Shell hinterlegen:
+
+```bash
+export ONENOTE_CLIENT_ID="<DEINE_CLIENT_ID>"
+export ONENOTE_TENANT_ID="<DEIN_TENANT_ODER_COMMON>"
+```
+
+Der CLI-Aufruf kann diese Variablen direkt verwenden:
+
+```bash
+python scripts/import_onenote.py \
+  --client-id "$ONENOTE_CLIENT_ID" \
+  --tenant-id "$ONENOTE_TENANT_ID" \
+  --output-dir data/sections \
+  --vectorstore vectorstore \
+  --collection onenote-sections
+```
+
+Alternativ können die IDs weiterhin manuell über die CLI-Argumente angegeben werden. Wichtig ist, dass sie zur zuvor angelegten Azure-App passen.
 
 ## Nutzung
 
